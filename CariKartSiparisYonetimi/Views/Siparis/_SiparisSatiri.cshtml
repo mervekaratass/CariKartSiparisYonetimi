@@ -1,0 +1,21 @@
+﻿@model SiparisDetayi
+@using System.Globalization
+
+@* Tek bir sipariş satırı. Alanların name değerlerini (Detaylar[0].UrunAdi gibi) siparis.js verir. *@
+<tr>
+    <td>
+        <input type="text" class="form-control" data-alan="UrunAdi" value="@Model.UrunAdi" required />
+    </td>
+    <td>
+        <input type="number" class="form-control text-end" data-alan="Miktar"
+               value="@Model.Miktar.ToString(CultureInfo.InvariantCulture)" min="0.01" step="0.01" required />
+    </td>
+    <td>
+        <input type="number" class="form-control text-end" data-alan="BirimFiyat"
+               value="@Model.BirimFiyat.ToString(CultureInfo.InvariantCulture)" min="0" step="0.01" required />
+    </td>
+    <td class="text-end align-middle satir-tutar"></td>
+    <td class="text-end">
+        <button type="button" class="btn btn-sm btn-outline-danger satir-sil">Sil</button>
+    </td>
+</tr>

@@ -1,0 +1,73 @@
+﻿@model Siparis
+@{
+    ViewData["Title"] = "Yeni Sipariş";
+}
+
+<h1>Yeni Sipariş</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label asp-for="SiparisNo" class="form-label"></label>
+            <input asp-for="SiparisNo" class="form-control" readonly />
+        </div>
+        <div class="col-md-3 mb-3">
+            <label asp-for="SiparisTarihi" class="form-label"></label>
+            <input asp-for="SiparisTarihi" class="form-control" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="CariKartId" class="form-label"></label>
+            <select asp-for="CariKartId" asp-items="ViewBag.Cariler" class="form-select">
+                <option value="0">-- Cari seçiniz --</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Aciklama" class="form-label"></label>
+        <textarea asp-for="Aciklama" class="form-control" rows="2"></textarea>
+    </div>
+
+    <h2 class="h4">Sipariş Satırları</h2>
+
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Ürün / Hizmet Adı</th>
+                <th class="text-end" style="width: 160px;">Miktar</th>
+                <th class="text-end" style="width: 160px;">Birim Fiyat</th>
+                <th class="text-end" style="width: 160px;">Tutar</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="satirlar">
+            @foreach (var detay in Model.Detaylar)
+            {
+                <partial name="_SiparisSatiri" model="detay" />
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button type="button" id="satirEkle" class="btn btn-sm btn-outline-primary">Satır Ekle</button>
+                </td>
+                <th colspan="2" class="text-end">Sipariş Toplamı</th>
+                <th class="text-end" id="genelToplam"></th>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Siparişi Kaydet</button>
+</form>
+
+@* "Satır Ekle" tıklanınca kopyalanan boş satır. *@
+<template id="satirSablonu">
+    <partial name="_SiparisSatiri" model="new SiparisDetayi { Miktar = 1 }" />
+</template>
+
+@section Scripts {
+    <script src="~/js/siparis.js" asp-append-version="true"></script>
+}

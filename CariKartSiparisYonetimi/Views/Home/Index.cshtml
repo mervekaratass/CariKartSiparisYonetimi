@@ -1,8 +1,28 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="mb-4">Cari Kart ve Sipariş Yönetimi</h1>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5 card-title">Cari Kartlar</h2>
+                <p class="card-text">Cari kart ekleyin, düzenleyin, logo yükleyin veya pasife alın.</p>
+                <a asp-controller="CariKart" asp-action="List" class="btn btn-primary">Cari Kart Listesi</a>
+                <a asp-controller="CariKart" asp-action="Create" class="btn btn-outline-primary">Yeni Cari Kart</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h5 card-title">Siparişler</h2>
+                <p class="card-text">Bir cari için sipariş oluşturun ve mevcut siparişleri görüntüleyin.</p>
+                <a asp-controller="Siparis" asp-action="List" class="btn btn-primary">Sipariş Listesi</a>
+                <a asp-controller="Siparis" asp-action="Create" class="btn btn-outline-primary">Yeni Sipariş</a>
+            </div>
+        </div>
+    </div>
 </div>

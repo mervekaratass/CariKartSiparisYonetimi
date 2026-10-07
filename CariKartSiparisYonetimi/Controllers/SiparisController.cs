@@ -16,14 +16,14 @@ namespace CariKartSiparisYonetimi.Controllers
         }
 
         // SIP-00001, SIP-00002 ... biçiminde sıradaki numarayı üretir.
-        private async Task<string> SiradakiSiparisNo()
+        private async Task<string> GetNextOrderNumber()
         {
             var sonId = await _context.Siparisler.MaxAsync(s => (int?)s.Id) ?? 0;
             return $"SIP-{sonId + 1:D5}";
         }
 
         // Cari seçim listesini hazırlar; sadece aktif cariler seçilebilir.
-        private async Task CarileriDoldur()
+        private async Task LoadCustomers()
         {
             var cariler = await _context.CariKartlar
                 .Where(c => c.Durum)
@@ -35,23 +35,24 @@ namespace CariKartSiparisYonetimi.Controllers
         }
 
         // Boş sipariş formunu gösterir.
+
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? cariId)
         {
             var siparis = new Siparis
             {
-                SiparisNo = await SiradakiSiparisNo()
+                SiparisNo = await GetNextOrderNumber(),
+                CariKartId = cariId ?? 0
             };
             siparis.Detaylar.Add(new SiparisDetayi { Miktar = 1 });
 
-            await CarileriDoldur();
+            await LoadCustomers();
             return View(siparis);
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(Siparis siparis)
         {
-            siparis.SiparisNo=await SiradakiSiparisNo();
+            siparis.SiparisNo=await GetNextOrderNumber();
 
             if (siparis.Detaylar.Count == 0)
                 ModelState.AddModelError(string.Empty, "Siparişe en az 1 satır eklenmelidir.");
@@ -64,7 +65,7 @@ namespace CariKartSiparisYonetimi.Controllers
 
             if (!ModelState.IsValid)
             {
-                await CarileriDoldur();
+                await LoadCustomers();
                 return View(siparis);
             }
 

@@ -53,6 +53,10 @@ else
                         }
                     </td>
                     <td class="text-end">
+                        @if (cari.Durum)
+                        {
+                            <a asp-controller="Siparis" asp-action="Create" asp-route-cariId="@cari.Id" class="btn btn-sm btn-outline-success">Sipariş Oluştur</a>
+                        }
                         <a asp-action="Edit" asp-route-id="@cari.Id" class="btn btn-sm btn-outline-primary">Düzenle</a>        
                     <form asp-action="ToggleStatus" asp-route-id="@cari.Id" method="post" class="d-inline">
                         <button type="submit" class="btn btn-sm btn-outline-secondary">

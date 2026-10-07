@@ -35,3 +35,15 @@
     <textarea asp-for="Adres" class="form-control" rows="3"></textarea>
     <span asp-validation-for="Adres" class="text-danger"></span>
 </div>
+
+<div class="mb-3">
+    <label for="logoDosyasi" class="form-label">Logo (JPG veya PNG, en fazla 2 MB)</label>
+    @if (!string.IsNullOrEmpty(Model.LogoYolu))
+    {
+        <div class="mb-2">
+            <img src="@Model.LogoYolu" alt="Mevcut logo" style="max-height: 120px; max-width: 240px;" />
+        </div>
+    }
+    <input type="file" id="logoDosyasi" name="logoDosyasi" class="form-control" accept=".jpg,.jpeg,.png" />
+    @Html.ValidationMessage("logoDosyasi", new { @class = "text-danger" })
+</div>

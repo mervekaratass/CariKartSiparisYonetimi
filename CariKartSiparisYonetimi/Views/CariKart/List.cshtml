@@ -17,6 +17,7 @@ else
     <table class="table table-striped align-middle">
         <thead>
             <tr>
+                <th>Logo</th>
                 <th>Cari Kodu</th>
                 <th>Firma Adı</th>
                 <th>Vergi Numarası</th>
@@ -30,6 +31,12 @@ else
             @foreach (var cari in Model)
             {
                 <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(cari.LogoYolu))
+                        {
+                            <img src="@cari.LogoYolu" alt="@cari.FirmaAdi logosu" style="max-height: 40px; max-width: 80px;" />
+                        }
+                    </td>
                     <td>@cari.CariKod</td>
                     <td>@cari.FirmaAdi</td>
                     <td>@cari.VergiNo</td>

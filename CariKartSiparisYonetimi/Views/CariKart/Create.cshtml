@@ -1,0 +1,18 @@
+﻿@model CariKart
+@{
+    ViewData["Title"] = "Yeni Cari Kart";
+}
+
+<h1>Yeni Cari Kart</h1>
+
+<form asp-action="Create" method="post">
+   
+        <partial name="_Form" model="Model" />
+  
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="List" class="btn btn-secondary">Vazgeç</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

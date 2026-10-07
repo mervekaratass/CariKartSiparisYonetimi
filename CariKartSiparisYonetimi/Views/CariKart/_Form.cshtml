@@ -1,0 +1,37 @@
+﻿@model CariKart
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label asp-for="CariKod" class="form-label"></label>
+        <input asp-for="CariKod" class="form-control" />
+        <span asp-validation-for="CariKod" class="text-danger"></span>
+    </div>
+    <div class="col-md-8 mb-3">
+        <label asp-for="FirmaAdi" class="form-label"></label>
+        <input asp-for="FirmaAdi" class="form-control" />
+        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label asp-for="VergiNo" class="form-label"></label>
+        <input asp-for="VergiNo" class="form-control" />
+        <span asp-validation-for="VergiNo" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="Telefon" class="form-label"></label>
+        <input asp-for="Telefon" class="form-control" />
+        <span asp-validation-for="Telefon" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="EPosta" class="form-label"></label>
+        <input asp-for="EPosta" class="form-control" />
+        <span asp-validation-for="EPosta" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Adres" class="form-label"></label>
+    <textarea asp-for="Adres" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Adres" class="text-danger"></span>
+</div>
